@@ -17,5 +17,4 @@ chrome.storage.sync.get(["name", "test"], (res) => {
 chrome.storage.sync.get(['name'], (res) => {
 	// ?? if null set to with is on right hand side
     nameInput.value = res.name ?? 'Enter Your name';
-    
 });

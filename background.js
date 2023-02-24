@@ -1,13 +1,33 @@
 chrome.alarms.create({
-    // 1 is mins
-    // so 1/60 is seconds
+	// 1 is mins
+	// so 1/60 is seconds
 	periodInMinutes: 1 / 60,
 });
 
-
 chrome.alarms.onAlarm.addListener((alarm) => {
-    console.log(alarm);
-})
+	// console.log(alarm);
+	chrome.storage.local.get(['timer'], (res) => {
+		const time = res.timer ?? 0;
+		chrome.storage.local.set({
+			timer: time + 1,
+		});
+		chrome.action.setBadgeText({
+			text: `${time + 1}`,
+		});
+	});
+});
+
+// chrome.alarms.onAlarm.addListener((alarm) => {
+// 	chrome.storage.local.get(['timer'], (res) => {
+// 		const time = res.timer ?? 0;
+// 		chrome.storage.local.set({
+// 			timer: time + 1,
+// 		});
+// 		chrome.action.setBadgeText({
+// 			text: `${time + 1}`,
+// 		});
+// 	});
+// });
 
 // Example:
 // console.log("Hello from background script!");
