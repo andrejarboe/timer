@@ -4,7 +4,7 @@ chrome.alarms.create({
 	periodInMinutes: 1 / 60,
 });
 
-chrome.alarms.onAlarm.addListener((alarm) => {
+chrome.alarms.onAlarm.addListener(() => {
 	// console.log(alarm);
 	chrome.storage.local.get(['timer'], (res) => {
 		const time = res.timer ?? 0;
